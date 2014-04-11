@@ -23,6 +23,8 @@
 							<th>Category Name</th>
 							<th>Name</th>
 							<th>Description</th>
+							<th>Unit Price</th>
+							<th>Quantity</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -34,6 +36,8 @@
 							<td th:text="${product.category.name}">Product Category</td>
 							<td th:text="${product.name}">Sample Product Name</td>
 							<td th:text="${product.description}">Sample Product Description</td>
+							<td th:text="${product.unitPrice}">100.99</td>
+							<td th:text="${product.inventory.quantity}">10</td>
 						</tr>
 					</tbody>
 				</table>
