@@ -32,15 +32,16 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<ul class="nav nav-pills">
-				  <li  class="active"><a href="#" th:href="@{/shop/products}">All</a></li>
-				  <li  th:each="category : ${categories}"><a th:href="@{/shop/categories/__${category.id}__/products}" href="#" th:text="${category.name}">Books</a></li>
+				  <li><a th:href="@{/shop/products}" href="#">All</a></li>
+				  <li  th:each="category : ${categories}" class="${category.name == currentcategory.name}?'active':''">
+				  	<a th:href="@{/shop/categories/__${category.id}__/products}" href="#" th:text="${category.name}">Books</a></li>
 				</ul>	
 			</div>	
 		</div>
 		<div class="row">	
 			<div class="col-sm-12">
 				<div class="table-responsive">
-					<h2 class="page-header">Products</h2>
+					<h2 class="page-header" th:text="'Products for Category: ' +  ${currentcategory.name}">Products for Category</h2>
 					<table class="table table-bordered table-striped">
 						<thead>
 							<tr>
