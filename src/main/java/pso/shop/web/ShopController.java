@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pso.shop.domain.Category;
 import pso.shop.service.CategoryRepository;
 import pso.shop.service.ProductRepository;
-
+/**
+ * Main controller of the Shop. 
+ * 
+ * @author Biju Kunjummen
+ */
 
 @Controller
 @RequestMapping("/shop")

@@ -8,6 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+/**
+ * Represents a categorization of products
+ * 
+ * @author Biju Kunjummen
+ */
 @Entity
 @Table(name = "categories")
 public class Category {

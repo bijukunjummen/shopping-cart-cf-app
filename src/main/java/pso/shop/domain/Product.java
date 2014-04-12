@@ -12,6 +12,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ * The primary merchandise of this "shop". 
+ * Product is associated with a basic set of attributes and can be
+ * added to Product "Category"
+ * 
+ * @author Biju Kunjummen
+ */
 @Entity
 @Table(name="products")
 public class Product {

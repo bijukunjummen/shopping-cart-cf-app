@@ -8,7 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
+/**
+ * An inventory of Products. Currently keeps only track of quantity of products
+ * 
+ * @author Biju Kunjummen
+ */
 @Entity
 @Table(name = "inventory")
 public class Inventory {
