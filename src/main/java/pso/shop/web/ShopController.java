@@ -3,6 +3,7 @@ package pso.shop.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,10 +24,14 @@ public class ShopController {
 		this.productRepository = productRepository;
 	}
 	
+	@ModelAttribute
+	public void commonModelAttributes(Model model) {
+		model.addAttribute("categories", this.categoryRepository.findAll());
+	}
+	
 	@RequestMapping("/products")
 	public String listProducts(Model model) {
 		model.addAttribute("products", this.productRepository.findAll());
-		model.addAttribute("categories", this.categoryRepository.findAll());
 		return "products/list";
 	}
 	@RequestMapping("/categories/{categoryId}/products")
@@ -34,7 +39,6 @@ public class ShopController {
 		Category category = this.categoryRepository.findOne(categoryId);
 		model.addAttribute("products", this.productRepository.findByCategory(category));
 		model.addAttribute("currentcategory", category);
-		model.addAttribute("categories", this.categoryRepository.findAll());
 		return "products/listforcategory";
 	}	
 }
