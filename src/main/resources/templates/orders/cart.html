@@ -40,17 +40,18 @@
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th width="80%">Product Name</th>
+									<th width="40%">Product Name</th>
+									<th width="40%">Product Description</th>
 									<th width="10%">Quantity</th>
-									<th></th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr th:if="${orderProducts.empty}">
-									<td colspan="2">No Products in Cart!</td>
+									<td colspan="3">No Products in Cart!</td>
 								</tr>
 								<tr th:each="orderProduct : ${orderProducts}">
 									<td th:text="${orderProduct.product.name}">Test Product</td>
+									<td th:text="${orderProduct.product.description}">Test Product</td>
 									<td th:text="${orderProduct.purchasedQuantity}">1</td>
 								</tr>
 							</tbody>

@@ -1,5 +1,11 @@
 body {
-	font-family: tahoma, verdana, arial, sans-serif; font-size: 12px;
 	padding-top: 60px;
 	background: url(../img/cream_dust.png) repeat 0 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Corben', Georgia, Times, serif;
+}
+p, div {
+    font-family: 'Nobile', Helvetica, Arial, sans-serif;
 }
