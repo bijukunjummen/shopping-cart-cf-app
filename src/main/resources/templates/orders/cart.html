@@ -33,47 +33,25 @@
     </div>
 	<div class="container-fluid">
 		<div layout:fragment="content">	
-			<div class="row">
-				<div class="col-sm-12">
-					<ul class="nav nav-tabs">
-					  <li  class="active"><a href="#" th:href="@{/shop/products}">All</a></li>
-					  <li  th:each="category : ${categories}"><a th:href="@{/shop/categories/__${category.id}__/products}" href="#" th:text="${category.name}">Books</a></li>
-					</ul>	
-				</div>	
-			</div>
 			<div class="row">	
 				<div class="col-sm-12">
 					<div class="table-responsive">
-						<h3>Products</h3>
+						<h3>Items in Cart</h3>
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th width="5%">Id</th>
-									<th width="10%">Category Name</th>
-									<th width="20%">Name</th>
-									<th width="25%">Description</th>
-									<th width="10%">Unit Price</th>
-									<th width="10%">Available Quantity</th>
+									<th width="80%">Product Name</th>
+									<th width="10%">Quantity</th>
 									<th></th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:if="${products.empty}">
-									<td colspan="7">No Product Found</td>
+								<tr th:if="${orderProducts.empty}">
+									<td colspan="2">No Products in Cart!</td>
 								</tr>
-								<tr th:each="product : ${products}">
-									<td th:text="${product.id}">1</td>
-									<td th:text="${product.category.name}">Product Category</td>
-									<td th:text="${product.name}">Sample Product Name</td>
-									<td th:text="${product.description}">Sample Product Description</td>
-									<td th:text="${product.unitPrice}">100.99</td>
-									<td th:text="${product.inventory.quantity}">10</td>
-									<td>
-										<form action="#" th:action="@{/orders/addToCart}" method="post">
-											<input type="hidden" name="productId" th:value="${product.id}"/> 
-											<input type="submit" class="btn btn-sm btn-primary" value="Add To Cart"/>
-										</form>
-									</td>
+								<tr th:each="orderProduct : ${orderProducts}">
+									<td th:text="${orderProduct.product.name}">Test Product</td>
+									<td th:text="${orderProduct.purchasedQuantity}">1</td>
 								</tr>
 							</tbody>
 						</table>

@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 /**
  * An inventory of Products. Currently keeps only track of quantity of products
  * 
@@ -26,6 +27,9 @@ public class Inventory {
 	private Product product;
 	
 	private Long quantity;
+	
+	@Version
+	private long version;
 
 	public Long getId() {
 		return id;
@@ -49,5 +53,13 @@ public class Inventory {
 	
 	public Long getQuantity() {
 		return this.quantity;
+	}
+
+	public long getVersion() {
+		return version;
+	}
+
+	public void setVersion(long version) {
+		this.version = version;
 	}
 }

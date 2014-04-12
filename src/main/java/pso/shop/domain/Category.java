@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import javax.validation.constraints.Size;
 
 /**
@@ -25,6 +26,9 @@ public class Category {
 	@Size(min = 1, max = 10)
 	@Column(name = "name")
 	private String name;
+	
+	@Version
+	private long version;
 
 	public Long getId() {
 		return id;
@@ -40,6 +44,14 @@ public class Category {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public long getVersion() {
+		return version;
+	}
+
+	public void setVersion(long version) {
+		this.version = version;
 	}
 
 }

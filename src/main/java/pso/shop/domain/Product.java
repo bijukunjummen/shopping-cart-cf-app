@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 /**
  * The primary merchandise of this "shop". 
@@ -22,6 +23,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name="products")
 public class Product {
+	
+	public Product() {
+	}
+	
+	public Product(Long id, String name, String description, BigDecimal unitPrice, Category category) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.unitPrice = unitPrice;
+		this.category = category;
+	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
@@ -39,6 +51,9 @@ public class Product {
 	
 	@OneToOne(mappedBy="product")
 	private Inventory inventory;
+	
+	@Version
+	private long version;
 
 	public Long getId() {
 		return id;
@@ -86,5 +101,13 @@ public class Product {
 
 	public void setInventory(Inventory inventory) {
 		this.inventory = inventory;
+	}
+
+	public long getVersion() {
+		return version;
+	}
+
+	public void setVersion(long version) {
+		this.version = version;
 	}
 }

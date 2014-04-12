@@ -38,10 +38,9 @@ public class ShopControllerWebTests {
 	}
 
 	@Test
-	public void testHome() throws Exception {
+	public void testListProducts() throws Exception {
 		this.mockMvc.perform(get("/shop/products"))
 			.andExpect(status().isOk())
 			.andExpect(content().string(containsString("Dummy Book1")));
-			
 	}
 }
