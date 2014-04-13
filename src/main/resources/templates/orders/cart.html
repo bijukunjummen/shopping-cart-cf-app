@@ -11,26 +11,26 @@
 
 </head>
 <body>
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation" th:replace="fragments/header :: header">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">PSO Shopfront for Demo - will actually come from fragment..</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Settings for Demo</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+	<div class="navbar navbar-default navbar-fixed-top" role="navigation" th:replace="fragments/header :: header">
+		<div class="container-fluid">
+			 <div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				  <span class="sr-only">Toggle navigation</span>
+				  <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">PSO Shopfront for Demo - will actually come from fragment</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Settings for Demo</a></li>
+					<li><a href="#">Profile</a></li>
+					<li><a href="#">Help</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
 	<div class="container-fluid">
 		<div layout:fragment="content">	
 			<div class="row">	
@@ -40,9 +40,10 @@
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th width="40%">Product Name</th>
-									<th width="40%">Product Description</th>
-									<th width="10%">Quantity</th>
+									<th width="20%">Product Name</th>
+									<th width="30%">Product Description</th>
+									<th width="30%">Quantity</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -52,7 +53,17 @@
 								<tr th:each="orderProduct : ${orderProducts}">
 									<td th:text="${orderProduct.product.name}">Test Product</td>
 									<td th:text="${orderProduct.product.description}">Test Product</td>
-									<td th:text="${orderProduct.purchasedQuantity}">1</td>
+									<td>
+										<form action="#" th:action="@{/orders/updateCart}" method="POST" class="form-inline">
+											
+											<input type="hidden" name="product.id" th:value="${orderProduct.product.id}" value="12"/>
+											<div class="form-group">
+												<input type="text" name="purchasedQuantity" th:value="${orderProduct.purchasedQuantity}" value="42"/>
+											</div>
+											<input type="submit" value="Update" class="btn btn-sm"/>
+										</form>
+									</td>
+									<td><a href="#" th:href="@{/orders/deleteFromCart/__${orderProduct.product.id}__}" class="btn btn-sm btn-primary">Delete</a></td>
 								</tr>
 							</tbody>
 						</table>

@@ -55,9 +55,12 @@ public class ShoppingCart {
 		if (this.map.containsKey(orderProduct.getProduct().getId())) {
 			if (orderProduct.getPurchasedQuantity()<=0) {
 				removeItemFromCart(orderProduct.getProduct().getId());
+			}else {
+				map.put(orderProduct.getProduct().getId(), orderProduct);
 			}
+		}else {
+			map.put(orderProduct.getProduct().getId(), orderProduct);
 		}
-		map.put(orderProduct.getProduct().getId(), orderProduct);
 	}
 	
 	public List<OrderProduct> getProductsInCart() {

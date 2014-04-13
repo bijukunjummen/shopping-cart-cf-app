@@ -48,10 +48,9 @@
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th width="5%">Id</th>
-									<th width="10%">Category Name</th>
-									<th width="20%">Name</th>
-									<th width="25%">Description</th>
+									<th width="10%">Category</th>
+									<th width="25%">Name</th>
+									<th width="30%">Description</th>
 									<th width="10%">Unit Price</th>
 									<th width="10%">Available Quantity</th>
 									<th></th>
@@ -59,10 +58,9 @@
 							</thead>
 							<tbody>
 								<tr th:if="${products.empty}">
-									<td colspan="7">No Product Found</td>
+									<td colspan="6">No Product Found</td>
 								</tr>
 								<tr th:each="product : ${products}">
-									<td th:text="${product.id}">1</td>
 									<td th:text="${product.category.name}">Product Category</td>
 									<td th:text="${product.name}">Sample Product Name</td>
 									<td th:text="${product.description}">Sample Product Description</td>

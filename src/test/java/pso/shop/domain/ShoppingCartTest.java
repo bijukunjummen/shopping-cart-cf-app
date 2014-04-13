@@ -46,9 +46,23 @@ public class ShoppingCartTest {
 		List<OrderProduct> ordersList = Arrays.asList(op1, op2);	
 		cart.updateCart(ordersList);
 		assertThat(cart.getProductsInCart().size(), equalTo(2));
-	
 	}	
-	
+
+	@Test
+	public void testUpdateWith0QuantityInCart() {
+		ShoppingCart cart = new ShoppingCart();
+		OrderProduct op1 = new OrderProduct(this.productMap.get(1l), 10);
+		OrderProduct op2 = new OrderProduct(this.productMap.get(2l), 12);
+
+		List<OrderProduct> ordersList = Arrays.asList(op1, op2);	
+		cart.updateCart(ordersList);
+		
+		OrderProduct op3 = new OrderProduct(this.productMap.get(2l), 0);
+		
+		cart.updateCart(Arrays.asList(op3));
+		assertThat(cart.getProductsInCart().size(), equalTo(1));
+	}	
+
 	
 	
 	@Before
