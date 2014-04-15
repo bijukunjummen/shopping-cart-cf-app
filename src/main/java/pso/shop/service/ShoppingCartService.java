@@ -1,9 +1,8 @@
-package pso.shop.web.service;
+package pso.shop.service;
 
 import java.util.List;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pso.shop.domain.OrderProduct;
@@ -18,9 +17,10 @@ import pso.shop.domain.ShoppingCart;
  * @author Biju Kunjummen
  */
 @Service
-@Scope(value="session", proxyMode=ScopedProxyMode.TARGET_CLASS)
 public class ShoppingCartService {
-	private ShoppingCart shoppingCart = new ShoppingCart();
+	
+	@Autowired
+	private ShoppingCart shoppingCart;
 	
 	public void addToCart(OrderProduct orderProduct) {
 		this.shoppingCart.addToCart(orderProduct);

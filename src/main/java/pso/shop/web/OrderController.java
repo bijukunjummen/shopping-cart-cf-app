@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pso.shop.domain.OrderProduct;
 import pso.shop.domain.Product;
 import pso.shop.service.ProductRepository;
-import pso.shop.web.service.ShoppingCartService;
+import pso.shop.service.ShoppingCartService;
 
 @Controller
 @RequestMapping("/orders")
