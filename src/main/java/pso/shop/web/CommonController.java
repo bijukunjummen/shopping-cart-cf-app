@@ -11,15 +11,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @ControllerAdvice
 public class CommonController {
 
-	@Value("${vcap.application.instance_id:unknown}")
-	private String instanceId;
+	@Value("${vcap.application.host:unknown}")
+	private String vcaphost;
+
+	@Value("${vcap.application.port:unknown}")
+	private String vcapport;
 	
 	@Autowired
 	private HttpSession httpSession;
 	
 	@ModelAttribute
 	public void setCommonAppAttributes(Model model) {
-		model.addAttribute("instanceId", instanceId);
+		model.addAttribute("vcaphost", vcaphost);
+		model.addAttribute("vcapport", vcapport);
 		model.addAttribute("userSessionId", httpSession.getId());
 	}
 }
