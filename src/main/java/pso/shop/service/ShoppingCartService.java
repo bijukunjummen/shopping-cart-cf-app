@@ -2,6 +2,8 @@ package pso.shop.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,21 +21,38 @@ import pso.shop.domain.ShoppingCart;
 @Service
 public class ShoppingCartService {
 	
+	//Autowiring in httpsession
 	@Autowired
-	private ShoppingCart shoppingCart;
+	private HttpSession httpSession;
+	
+	private static final String CART_ATTRIBUTE_NAME="shoppingcart";
+	
+	private ShoppingCart getShoppingCartInSession() {
+		ShoppingCart shoppingCart = (ShoppingCart)this.httpSession.getAttribute(CART_ATTRIBUTE_NAME);
+		if (shoppingCart == null) {
+			shoppingCart = new ShoppingCart();
+			this.httpSession.setAttribute(CART_ATTRIBUTE_NAME, shoppingCart);
+		}
+		return shoppingCart;
+	}
+	
 	
 	public void addToCart(OrderProduct orderProduct) {
-		this.shoppingCart.addToCart(orderProduct);
+		ShoppingCart shoppingCart = getShoppingCartInSession();
+		shoppingCart.addToCart(orderProduct);
 	}
 	
 	public void removeFromCart(long productId) {
-		this.shoppingCart.removeItemFromCart(productId);
+		ShoppingCart shoppingCart = getShoppingCartInSession();
+		shoppingCart.removeItemFromCart(productId);
 	}
 	
 	public void updateCart(List<OrderProduct> orderProducts) {
-		this.shoppingCart.updateCart(orderProducts);
+		ShoppingCart shoppingCart = getShoppingCartInSession();
+		shoppingCart.updateCart(orderProducts);
 	}
 	public List<OrderProduct> getProductsInCart() {
-		return this.shoppingCart.getProductsInCart();
+		ShoppingCart shoppingCart = getShoppingCartInSession();
+		return shoppingCart.getProductsInCart();
 	}
 }
