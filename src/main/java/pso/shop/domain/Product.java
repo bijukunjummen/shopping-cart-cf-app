@@ -1,5 +1,6 @@
 package pso.shop.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
@@ -22,8 +23,11 @@ import javax.persistence.Version;
  */
 @Entity
 @Table(name="products")
-public class Product {
+public class Product implements Serializable{
 	
+
+	private static final long serialVersionUID = 3202213773968832269L;
+
 	public Product() {
 	}
 	

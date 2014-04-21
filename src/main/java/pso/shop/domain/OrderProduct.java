@@ -1,5 +1,7 @@
 package pso.shop.domain;
 
+import java.io.Serializable;
+
 /**
  * Product in a shopping cart or past a purchase.
  * Just has the quantity that is purchased alon with 
@@ -8,7 +10,9 @@ package pso.shop.domain;
  * @author Biju Kunjummen
  *
  */
-public class OrderProduct {
+public class OrderProduct implements Serializable{
+	
+	private static final long serialVersionUID = -3480296374500403880L;
 	public OrderProduct() {
 		
 	}
