@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
+
 /**
  * A temporary object to hold the details of what the user intends to 
  * purchase
@@ -12,6 +16,8 @@ import java.util.List;
  * @author Biju Kunjummen
  */
 
+@Component
+@Scope(proxyMode=ScopedProxyMode.TARGET_CLASS, value="session")
 public class ShoppingCart implements Serializable{
 	private static final long serialVersionUID = 4573229359755965961L;
 	//Linked hashmap to maintain order of added items
