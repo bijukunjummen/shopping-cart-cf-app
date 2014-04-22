@@ -16,8 +16,6 @@ import org.springframework.stereotype.Component;
  * @author Biju Kunjummen
  */
 
-@Component
-@Scope(proxyMode=ScopedProxyMode.TARGET_CLASS, value="session")
 public class ShoppingCart implements Serializable{
 	private static final long serialVersionUID = 4573229359755965961L;
 	//Linked hashmap to maintain order of added items
