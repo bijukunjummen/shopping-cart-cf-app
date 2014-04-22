@@ -36,20 +36,27 @@ public class ShoppingCartService {
 		return shoppingCart;
 	}
 	
+	private void updateCartInSession(ShoppingCart shoppingCart) {
+		this.httpSession.setAttribute(CART_ATTRIBUTE_NAME, shoppingCart);
+	}
+	
 	
 	public void addToCart(OrderProduct orderProduct) {
 		ShoppingCart shoppingCart = getShoppingCartInSession();
 		shoppingCart.addToCart(orderProduct);
+		updateCartInSession(shoppingCart);
 	}
 	
 	public void removeFromCart(long productId) {
 		ShoppingCart shoppingCart = getShoppingCartInSession();
 		shoppingCart.removeItemFromCart(productId);
+		updateCartInSession(shoppingCart);
 	}
 	
 	public void updateCart(List<OrderProduct> orderProducts) {
 		ShoppingCart shoppingCart = getShoppingCartInSession();
 		shoppingCart.updateCart(orderProducts);
+		updateCartInSession(shoppingCart);
 	}
 	public List<OrderProduct> getProductsInCart() {
 		ShoppingCart shoppingCart = getShoppingCartInSession();
