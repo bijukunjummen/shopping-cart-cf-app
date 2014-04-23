@@ -19,6 +19,9 @@ import javax.persistence.Version;
 @Entity
 @Table(name = "inventory")
 public class Inventory implements Serializable{
+
+	private static final long serialVersionUID = 4863234893689754284L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")

@@ -20,6 +20,8 @@ import javax.validation.constraints.Size;
 @Table(name = "categories")
 public class Category implements Serializable{
 
+	private static final long serialVersionUID = 7433718480273391755L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
