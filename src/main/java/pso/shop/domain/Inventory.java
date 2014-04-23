@@ -1,5 +1,7 @@
 package pso.shop.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +18,7 @@ import javax.persistence.Version;
  */
 @Entity
 @Table(name = "inventory")
-public class Inventory {
+public class Inventory implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
