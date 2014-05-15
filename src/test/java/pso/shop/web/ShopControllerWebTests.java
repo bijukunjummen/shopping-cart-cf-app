@@ -1,8 +1,7 @@
 package pso.shop.web;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -39,8 +38,7 @@ public class ShopControllerWebTests {
 
 	@Test
 	public void testListProducts() throws Exception {
-		this.mockMvc.perform(get("/shop/products"))
-			.andExpect(status().isOk())
-			.andExpect(content().string(containsString("Dummy Book1")));
+		this.mockMvc.perform(get("/shop/partialsHome"))
+			.andExpect(status().isOk());
 	}
 }
