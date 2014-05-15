@@ -5,10 +5,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.stereotype.Component;
-
 /**
  * A temporary object to hold the details of what the user intends to 
  * purchase
@@ -27,16 +23,18 @@ public class ShoppingCart implements Serializable{
 	 * 
 	 * @param orderProduct
 	 */
-	public void addToCart(OrderProduct orderProduct) {
+	public OrderProduct addToCart(OrderProduct orderProduct) {
 		//If the item already exists in the cart, increment quantity..
 		if (this.map.containsKey(orderProduct.getProduct().getId())) {
 			OrderProduct existingOrderProduct = this.map.get(orderProduct.getProduct().getId());
 			int newQuantity = existingOrderProduct.getPurchasedQuantity() + orderProduct.getPurchasedQuantity();
 			OrderProduct newOrderProduct = new OrderProduct(orderProduct.getProduct(), newQuantity);
 			this.map.put(orderProduct.getProduct().getId(), newOrderProduct);
+			return newOrderProduct;
 		}else {
 			//assuming only one product at a time..but needs validation check
 			this.map.put(orderProduct.getProduct().getId(), orderProduct);
+			return orderProduct;
 		}
 	}
 	

@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 /**
  * An inventory of Products. Currently keeps only track of quantity of products
  * 
@@ -29,6 +31,7 @@ public class Inventory implements Serializable{
 	
 	@OneToOne
 	@JoinColumn(name="product_id")
+	@JsonBackReference
 	private Product product;
 	
 	private Long quantity;

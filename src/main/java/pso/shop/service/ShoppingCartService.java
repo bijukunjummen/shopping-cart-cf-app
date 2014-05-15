@@ -41,10 +41,11 @@ public class ShoppingCartService {
 	}
 	
 	
-	public void addToCart(OrderProduct orderProduct) {
+	public OrderProduct addToCart(OrderProduct orderProduct) {
 		ShoppingCart shoppingCart = getShoppingCartInSession();
-		shoppingCart.addToCart(orderProduct);
+		OrderProduct orderProductInCart = shoppingCart.addToCart(orderProduct);
 		updateCartInSession(shoppingCart);
+		return orderProductInCart;
 	}
 	
 	public void removeFromCart(long productId) {
@@ -61,5 +62,17 @@ public class ShoppingCartService {
 	public List<OrderProduct> getProductsInCart() {
 		ShoppingCart shoppingCart = getShoppingCartInSession();
 		return shoppingCart.getProductsInCart();
+	}
+	
+	public int getNumberOfProductsInCart() {
+		ShoppingCart shoppingCart = getShoppingCartInSession();
+		List<OrderProduct> orderProducts = shoppingCart.getProductsInCart();
+		int productsInCart = 0;
+		if (orderProducts!=null) {
+			for (OrderProduct orderProduct: orderProducts) {
+				productsInCart += orderProduct.getPurchasedQuantity();
+			}
+		}
+		return productsInCart;
 	}
 }

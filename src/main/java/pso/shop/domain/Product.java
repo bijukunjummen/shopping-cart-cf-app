@@ -14,6 +14,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 /**
  * The primary merchandise of this "shop". 
  * Product is associated with a basic set of attributes and can be
@@ -54,6 +56,7 @@ public class Product implements Serializable{
 	private Category category;
 	
 	@OneToOne(mappedBy="product")
+	@JsonManagedReference
 	private Inventory inventory;
 	
 	@Version

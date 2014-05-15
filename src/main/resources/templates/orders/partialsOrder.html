@@ -32,7 +32,24 @@
 		</div>
 	</div>
 	<div class="container-fluid">
-		<div layout:fragment="content">	
+		<div th:fragment="content">	
+			<div class="row" ng-if="statusmessage != ''">
+				<div class="col-xs-12">
+					<div class="alert alert-success">
+						<span ng-bind="statusmessage"></span>
+					</div>
+				</div>
+			</div>			
+			<div class="row">
+				<div class="col-xs-6">	
+				</div>	
+				<div class="col-xs-6">
+					<ul class="nav nav-pills navbar-right">
+						<li><a ui-sref="home" class="btn btn-default"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+						<li><a ui-sref="order" class="btn btn-danger"><span class="badge">{{productsCountInCart}}</span> <span class="glyphicon glyphicon-shopping-cart"></span>Shopping Cart</a></li>
+					</ul>				
+				</div>					
+			</div>			
 			<div class="row">	
 				<div class="col-sm-12">
 					<div class="table-responsive">
@@ -47,24 +64,20 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:if="${orderProducts.empty}">
-									<td colspan="3">No Products in Cart!</td>
-								</tr>
-								<tr th:each="orderProduct : ${orderProducts}">
-									<td th:text="${orderProduct.product.name}">Test Product</td>
-									<td th:text="${orderProduct.product.description}">Test Product</td>
+								<tr ng-repeat="orderProduct in orderProducts">
+									<td>{{orderProduct.product.name}}</td>
+									<td>{{orderProduct.product.description}}</td>
 									<td>
-										<form action="#" th:action="@{/orders/updateCart}" method="POST" class="form-inline">
-											
-											<input type="hidden" name="product.id" th:value="${orderProduct.product.id}" value="12"/>
-											<div class="form-group">
-												<input type="text" name="purchasedQuantity" th:value="${orderProduct.purchasedQuantity}" value="42"/>
-											</div>
-											<input type="submit" value="Update" class="btn btn-sm"/>
-										</form>
+										<div class="form-inline">
+										<div class="form-group">
+											<input type="text" name="purchasedQuantity" ng-model="orderProduct.purchasedQuantity"/>
+										</div>
+										<button class="btn btn-sm btn-default" ng-click="updateOrderProduct(orderProduct)">Update</button>
+										</div>
 									</td>
-									<td><a href="#" th:href="@{/orders/deleteFromCart/__${orderProduct.product.id}__}" class="btn btn-sm btn-primary">Delete</a></td>
+									<td><button class="btn btn-sm btn-danger" ng-click="deleteOrderProduct(orderProduct)">Delete</button></td>
 								</tr>
+								<tr ng-hide="orderProducts.length"><td colspan="4">No products in Cart!</td></tr>
 							</tbody>
 						</table>
 					</div>

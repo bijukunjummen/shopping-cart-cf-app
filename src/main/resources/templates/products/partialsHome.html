@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/sitelayout">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>PSO Shopfront</title>
 <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}"
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap-theme.min.css}"
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" />	
 <link rel="stylesheet" th:href="@{/css/application.css}" href="../../static/css/application.css" />
 <script  th:src="@{/webjars/jquery/2.1.0/jquery.js}" src="jquery.js" > </script>
 <script  th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.js}" 
@@ -32,17 +34,29 @@
 		</div>
 	</div>
 	<div class="container-fluid">
-		<div layout:fragment="content">	
+		<div th:fragment="content">	
+			<div class="row" ng-if="statusmessage != ''">
+				<div class="col-xs-12">
+					<div class="alert alert-success">
+						<span ng-bind="statusmessage"></span>
+					</div>
+				</div>
+			</div>			
 			<div class="row">
-				<div class="col-sm-12">
+				<div class="col-xs-6">
 					<ul class="nav nav-tabs">
-					  <li  class="active"><a href="#" th:href="@{/shop/products}">All</a></li>
-					  <li  th:each="category : ${categories}"><a th:href="@{/shop/categories/__${category.id}__/products}" href="#" th:text="${category.name}">Books</a></li>
+						<li ng-class="currentCategory==''?'active':''"><a ng-click="showForAllCategory()">All</a></li>
+						<li ng-repeat="category in categories" ng-class="currentCategory==category.name?'active':''"><a ng-click="showProductsForCategory(category)">{{category.name}}</a></li>
 					</ul>	
 				</div>	
+				<div class="col-xs-6">
+					<ul class="nav nav-pills navbar-right">
+					  <li><a href="#" ui-sref="order" class="btn btn-danger"><span class="badge">{{productsCountInCart}}</span> <span class="glyphicon glyphicon-shopping-cart"></span>Shopping Cart</a></li>
+					</ul>				
+				</div>					
 			</div>
 			<div class="row">	
-				<div class="col-sm-12">
+				<div class="col-xs-12">
 					<div class="table-responsive">
 						<h3>Products</h3>
 						<table class="table table-striped">
@@ -57,20 +71,14 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:if="${products.empty}">
-									<td colspan="6">No Product Found</td>
-								</tr>
-								<tr th:each="product : ${products}">
-									<td th:text="${product.category.name}">Product Category</td>
-									<td th:text="${product.name}">Sample Product Name</td>
-									<td th:text="${product.description}">Sample Product Description</td>
-									<td th:text="${product.unitPrice}">100.99</td>
-									<td th:text="${product.inventory.quantity}">10</td>
+								<tr ng-repeat="product in products | filter:currentCategoryFilter">
+									<td>{{product.category.name}}</td>
+									<td>{{product.name}}</td>
+									<td>{{product.description}}</td>
+									<td>{{product.unitPrice}}</td>
+									<td>{{product.inventory.quantity}}</td>
 									<td>
-										<form action="#" th:action="@{/orders/addToCart}" method="post">
-											<input type="hidden" name="productId" th:value="${product.id}"/> 
-											<input type="submit" class="btn btn-sm btn-primary" value="Add To Cart"/>
-										</form>
+											<a href="" class="btn btn-sm btn-primary" ng-click="addToCart(product)">Add To Cart</a>
 									</td>
 								</tr>
 							</tbody>

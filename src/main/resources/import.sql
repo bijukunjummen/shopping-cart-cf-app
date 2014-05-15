@@ -17,7 +17,7 @@ insert into products(id, name, description, category_id, unit_price, version) va
 
 insert into inventory(id, product_id, quantity, version) values(1, 1, 100, 0);
 insert into inventory(id, product_id, quantity, version) values(2, 2, 100, 0);
-insert into inventory(id, product_id, quantity, version) values(3, 3, 0, 0);
+insert into inventory(id, product_id, quantity, version) values(3, 3, 25, 0);
 insert into inventory(id, product_id, quantity, version) values(4, 4, 25, 0);
 insert into inventory(id, product_id, quantity, version) values(5, 5, 25, 0);
 insert into inventory(id, product_id, quantity, version) values(6, 6, 24, 0);

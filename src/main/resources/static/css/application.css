@@ -1,6 +1,5 @@
 body {
 	padding-top: 60px;
-	background: url(../img/cream_dust.png) repeat 0 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -8,4 +7,5 @@ h1, h2, h3, h4, h5, h6 {
 }
 p, div {
     font-family: Verdana, Tahoma, Arial, sans-serif;
+    font-size: 12px;
 }
