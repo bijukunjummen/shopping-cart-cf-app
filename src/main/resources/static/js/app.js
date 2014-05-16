@@ -74,6 +74,7 @@ psoApp.controller("HomeCtrl", function($scope, productFactory, orderFactory) {
 	function init() {
 		$scope.currentCategory="";
 		$scope.statusmessage="";
+		$scope.errormessage='';
 		productFactory.getProductList().success(function(data){
 			$scope.products = data;
 		});
@@ -102,7 +103,9 @@ psoApp.controller("HomeCtrl", function($scope, productFactory, orderFactory) {
 	$scope.addToCart = function(product) {
 		orderFactory.addToCart(product).success(function(data){
 			$scope.updateCartCount();
-			$scope.statusmessage="Added " + product.name + " to Cart!";
+			$scope.setStatusMessage("Added " + product.name + " to Cart!");
+		}).error(function(data, status, headers, config) {
+			$scope.setErrorMessage("Failed to add " + product.name + " to the Cart!") ;
 		});
 	};
 	
@@ -117,13 +120,23 @@ psoApp.controller("HomeCtrl", function($scope, productFactory, orderFactory) {
 			}
 		}
 	};
+	$scope.setErrorMessage = function(message) {
+		$scope.errormessage = message;
+		$scope.statusmessage = '';
+	};
+	
+	$scope.setStatusMessage = function(message) {
+		$scope.statusmessage = message;
+		$scope.errormessage = '';
+	};	
 	
 	init();
 });
 
 psoApp.controller("OrderCtrl", function($scope, orderFactory, $state) {
 	function init() {
-		$scope.statusmessage="";		
+		$scope.statusmessage="";	
+		$scope.errormessage="";	
 		orderFactory.getOrderProductList().success(function(data) {
 			$scope.orderProducts = data;
 		});
@@ -140,7 +153,9 @@ psoApp.controller("OrderCtrl", function($scope, orderFactory, $state) {
 		orderFactory.updateOrderProduct(orderProduct).success(function(data) {
 			$scope.orderProducts = data;
 			$scope.updateCartCount();
-			$scope.statusmessage = "Updated order for product " + orderProduct.product.name;
+			$scope.setStatusMessage("Updated order for product " + orderProduct.product.name);
+		}).error(function(data, status, headers, config) {
+			$scope.setErrorMessage("Failed to update order for " + orderProduct.product.name);
 		});
 	};
 	
@@ -148,8 +163,20 @@ psoApp.controller("OrderCtrl", function($scope, orderFactory, $state) {
 		orderFactory.deleteOrderProduct(orderProduct).success(function(data){
 			$scope.orderProducts = data;
 			$scope.updateCartCount();
-			$scope.statusmessage = "Deleted order for product " + orderProduct.product.name;
+			$scope.setStatusMessage("Deleted order for product " + orderProduct.product.name);
+		}).error(function(data, status, headers, config) {
+			$scope.setErrorMessage("Failed to delete " + orderProduct.product.name + " from the Cart!") ;
 		});
+	};
+	
+	$scope.setErrorMessage = function(message) {
+		$scope.errormessage = message;
+		$scope.statusmessage = '';
+	};
+	
+	$scope.setStatusMessage = function(message) {
+		$scope.statusmessage = message;
+		$scope.errormessage = '';
 	};
 	
 	init();

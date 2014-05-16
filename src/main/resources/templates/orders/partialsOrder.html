@@ -32,18 +32,29 @@
 		</div>
 	</div>
 	<div class="container-fluid">
-		<div th:fragment="content">	
-			<div class="row" ng-if="statusmessage != ''">
-				<div class="col-xs-12">
-					<div class="alert alert-success">
-						<span ng-bind="statusmessage"></span>
-					</div>
-				</div>
-			</div>			
+		<div th:fragment="content">			
 			<div class="row">
-				<div class="col-xs-6">	
+				<div class="col-xs-4">	
+				<h3>Items in Cart</h3>
 				</div>	
-				<div class="col-xs-6">
+				<div class="col-xs-4">
+					<div class="row" ng-if="statusmessage != ''">
+						<div class="col-xs-12">
+							<p class="bg-success text-center">
+								<span ng-bind="statusmessage"></span>
+							</p>
+						</div>
+					</div>
+					<div class="row" ng-if="errormessage != ''">
+						<div class="col-xs-12">
+							<p class="bg-danger text-center">
+								<span ng-bind="errormessage"></span>
+							</p>
+						</div>
+					</div>
+				</div>							
+				
+				<div class="col-xs-4">
 					<ul class="nav nav-pills navbar-right">
 						<li><a ui-sref="home" class="btn btn-default"><span class="glyphicon glyphicon-home"></span> Home</a></li>
 						<li><a ui-sref="order" class="btn btn-danger"><span class="badge">{{productsCountInCart}}</span> <span class="glyphicon glyphicon-shopping-cart"></span>Shopping Cart</a></li>
@@ -51,36 +62,37 @@
 				</div>					
 			</div>			
 			<div class="row">	
-				<div class="col-sm-12">
-					<div class="table-responsive">
-						<h3>Items in Cart</h3>
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th width="20%">Product Name</th>
-									<th width="30%">Product Description</th>
-									<th width="30%">Quantity</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat="orderProduct in orderProducts">
-									<td>{{orderProduct.product.name}}</td>
-									<td>{{orderProduct.product.description}}</td>
-									<td>
-										<div class="form-inline">
-										<div class="form-group">
-											<input type="text" name="purchasedQuantity" ng-model="orderProduct.purchasedQuantity"/>
-										</div>
-										<button class="btn btn-sm btn-default" ng-click="updateOrderProduct(orderProduct)">Update</button>
-										</div>
-									</td>
-									<td><button class="btn btn-sm btn-danger" ng-click="deleteOrderProduct(orderProduct)">Delete</button></td>
-								</tr>
-								<tr ng-hide="orderProducts.length"><td colspan="4">No products in Cart!</td></tr>
-							</tbody>
-						</table>
-					</div>
+				<div class="col-xs-12">
+					<div class="row">			
+						<div class="table-responsive">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th width="20%">Product Name</th>
+										<th width="30%">Product Description</th>
+										<th width="30%">Quantity</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="orderProduct in orderProducts">
+										<td>{{orderProduct.product.name}}</td>
+										<td>{{orderProduct.product.description}}</td>
+										<td>
+											<div class="form-inline">
+											<div class="form-group">
+												<input type="text" name="purchasedQuantity" ng-model="orderProduct.purchasedQuantity"/>
+											</div>
+											<button class="btn btn-sm btn-default" ng-click="updateOrderProduct(orderProduct)">Update</button>
+											</div>
+										</td>
+										<td><button class="btn btn-sm btn-danger" ng-click="deleteOrderProduct(orderProduct)">Delete</button></td>
+									</tr>
+									<tr ng-hide="orderProducts.length"><td colspan="4">No products in Cart!</td></tr>
+								</tbody>
+							</table>
+						</div>
+					</div>	
 				</div>
 			</div>
 		</div>
