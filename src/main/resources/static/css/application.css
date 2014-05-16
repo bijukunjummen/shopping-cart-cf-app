@@ -3,9 +3,18 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family:  Georgia, Times, serif;
+    font-family:  Verdana, Georgia, Times, serif;
 }
 p, div {
     font-family: Verdana, Tahoma, Arial, sans-serif;
     font-size: 12px;
+}
+
+pre
+{
+    white-space: pre-wrap; /* CSS3 */
+    white-space: -moz-pre-wrap; /* Mozilla, post millennium */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-all; /* Internet Explorer 5.5+ */
 }

@@ -2,6 +2,7 @@ package pso.shop.web;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -30,9 +31,10 @@ public class SessionDetailsController {
 	@RequestMapping("/rest/vcap")
 	@ResponseBody
 	public Map<String, String> vcapProperties() {
-		Map<String, String> vcap = new HashMap<String, String>();
+		Map<String, String> vcap = new LinkedHashMap<String, String>();
 		vcap.put("VCAP_APPLICATION", environment.getProperty("VCAP_APPLICATION", "{}"));
 		vcap.put("VCAP_SERVICES", environment.getProperty("VCAP_SERVICES", "{}"));
+		vcap.putAll(System.getenv());
 		return vcap;
 	}
 	
