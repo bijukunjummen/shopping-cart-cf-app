@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>PSO Shopfront</title>
+<title>Session Based Storefront</title>
 <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}"
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
 <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap-theme.min.css}"
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" />
 <link rel="stylesheet" th:href="@{/css/application.css}" href="../../static/css/application.css" />
 <script th:src="@{/webjars/jquery/2.1.0/jquery.js}" src="jquery.js" > </script>
-<script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.js}" 
-		src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.js" > </script>
-<script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.js}" 
-		src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.js" > </script>
-<script th:src="@{/webjars/angularjs/1.3.0-beta.8/angular.min.js}" 
-		src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js" > </script>
+<script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.js}" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.js" > </script>
+<script th:src="@{/webjars/angularjs/1.3.0-beta.8/angular.min.js}" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js" > </script>
 <script th:src="@{/webjars/angularjs/1.3.0-beta.8/angular-resource.min.js}" src="#" > </script>
 <script th:src="@{/webjars/angular-ui-router/0.2.8/angular-ui-router.min.js}" src="#" > </script>
 <script th:inline="javascript">
@@ -69,9 +65,9 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<hr/>
-					<small><strong><em>Host:</em></strong> <span th:text="${vcaphost}">vcaphost</span>, 
-					<strong><em>Port:</em></strong> <span th:text="${vcapport}">vcapport</span>,
-					<strong><em>SessionID:</em></strong> <span th:text="${userSessionId}">dummy sessionid</span>
+					<small>
+					<strong><em>SessionID:</em></strong> <span th:text="${userSessionId}">dummy sessionid</span>,
+					<strong><em>Port:</em></strong> <span th:text="${serverPort}">Some Port</span>
 					</small>
 				</div>
 			</div>

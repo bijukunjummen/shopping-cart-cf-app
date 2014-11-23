@@ -4,7 +4,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,18 +21,15 @@ import pso.shop.service.CategoryRepository;
 @RequestMapping("/shop")
 public class ShopController {
 	private CategoryRepository categoryRepository;
+
+	@Value("${server.port:unknown}")
+	private String serverPort;
 	
 	@Autowired
 	public ShopController(CategoryRepository categoryRepository) {
 		this.categoryRepository = categoryRepository;
 	}
 
-	@Value("${vcap.application.host:unknown}")
-	private String vcaphost;
-
-	@Value("${vcap.application.port:unknown}")
-	private String vcapport;
-	
 	@Autowired
 	private HttpSession httpSession;
 	
@@ -41,9 +37,8 @@ public class ShopController {
 	@ModelAttribute
 	public void commonModelAttributes(Model model) {
 		model.addAttribute("categories", this.categoryRepository.findAll());
-		model.addAttribute("vcaphost", vcaphost);
-		model.addAttribute("vcapport", vcapport);
 		model.addAttribute("userSessionId", httpSession.getId());
+		model.addAttribute("serverPort", serverPort);
 	}
 
 	@RequestMapping("/home")
