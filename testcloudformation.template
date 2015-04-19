@@ -1,0 +1,27 @@
+{
+	"AWSTemplateFormatVersion": "2010-09-09",
+	"Description": "Integration Test Template",
+	"Parameters": {
+	},
+	"Resources": {
+		"UserTagAndUserDataInstance": {
+			"Type": "AWS::EC2::Instance",
+			"Properties": {
+				"DisableApiTermination": "FALSE",
+				"ImageId": "ami-ff527ecf",
+				"UserData": {
+					"Fn::Base64": "data1=value1;data2=value2"
+				},
+				"InstanceType": "t1.micro",
+				"Tags": []
+			}
+		}
+	},
+	"Outputs": {
+		"InstanceId": {
+			"Value": {
+				"Ref": "UserTagAndUserDataInstance"
+			}
+		}
+	}
+}
