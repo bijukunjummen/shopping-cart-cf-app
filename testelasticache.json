@@ -438,6 +438,12 @@
       "Type": "AWS::EC2::Instance",
       "Metadata": {
         "AWS::CloudFormation::Init": {
+          "configSets": {
+            "full_install": [
+              "install_sample_app",
+              "run_sample_app"
+            ]
+          },
           "config": {
             "packages": {
               "yum": {

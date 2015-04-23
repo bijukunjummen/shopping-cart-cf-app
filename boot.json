@@ -5,9 +5,9 @@
         "source_ami"  : ""
   },
   "builders": [{
-        "name"         : "aws",
+        "name"         : "boot-sample",
         "type"         : "amazon-ebs",
-        "ami_name"     : "boot-ami",
+        "ami_name"     : "boot-ami {{timestamp}}",
         "source_ami"   : "{{user `source_ami`}}",
         "instance_type": "m3.medium",
         "region"       : "us-west-2",
@@ -16,8 +16,7 @@
         "access_key"   : "{{user `aws_access_key`}}",
         "secret_key"   : "{{user `aws_secret_key`}}",
         "user_data_file" : "start-boot-user-data"
-    }],"provisioners": [
-    {
+    }],"provisioners": [{
       "type": "file",
       "source": "target/sample-pso-cf-app-1.0.0.jar",
       "destination": "/home/ec2-user/sample-pso-cf-app-1.0.0.jar"
