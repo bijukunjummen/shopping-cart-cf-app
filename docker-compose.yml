@@ -1,7 +1,5 @@
 nginx:
-  image: nginx
-  volumes:
-    - nginx:/etc/nginx:ro
+  build: nginx/
   links:
     - shop1
     - shop2
